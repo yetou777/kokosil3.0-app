@@ -1,6 +1,6 @@
 "use client"; // このファイルがクライアントコンポーネントであることを示すおまじない
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
@@ -17,6 +17,7 @@ export default function MainLayout() {
   // 現在選択されているビューを管理するための状態(state)
   // useStateの初期値として 'home' を設定
   const [activeView, setActiveView] = useState<ViewType>("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // 表示するメインコンテンツを動的に選択する
   const renderMainContent = () => {
@@ -36,16 +37,23 @@ export default function MainLayout() {
     }
   };
 
+  const handleToggleSidebar = useCallback(() => {
+    setIsSidebarOpen((prev) => !prev);
+  }, []);
+
+  const handleCloseSidebar = useCallback(() => {
+    setIsSidebarOpen(false);
+  }, []);
+
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       {/* ヘッダー */}
-      <Header activeView={activeView} />
+      <Header activeView={activeView} onToggleSidebar={handleToggleSidebar} />
 
       <div className="flex flex-1 overflow-hidden">
-        {/* サイドバー */}
-        <Sidebar />
-
-        {/* メインコンテンツ */}
+        {/* サイドバー（PC用とスマホ用を含む） */}
+        <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+        {/* メインコンテンツエリア */}
         <main className="flex-1 p-4 overflow-y-auto">
           {renderMainContent()}
         </main>
