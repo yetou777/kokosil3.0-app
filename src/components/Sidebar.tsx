@@ -19,7 +19,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* サイドバー表示時の背景オーバーレイ */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-30 transition-opacity md:hidden ${
+        className={`fixed inset-0 bg-black/40 backdrop-blur-lg z-30 transition-opacity ease-in-out duration-300 md:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
