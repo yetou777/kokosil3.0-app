@@ -1,5 +1,6 @@
+import { useTranslation } from "react-i18next";
 import { ViewType } from "./MainLayout";
-import { Home, Search, Map, Bell, User } from "lucide-react";
+import { Home, Globe, Search, Heart, User } from "lucide-react";
 
 type FooterProps = {
   activeView: ViewType;
@@ -8,23 +9,24 @@ type FooterProps = {
 
 type FooterButton = {
   view: ViewType;
-  label: string;
   icon: React.ComponentType<{ className?: string }>;
 };
 
 const footerButtons: FooterButton[] = [
-  { view: "home", label: "ホーム", icon: Home },
-  { view: "search", label: "検索", icon: Search },
-  { view: "map", label: "Map", icon: Map },
-  { view: "notifications", label: "通知", icon: Bell },
-  { view: "profile", label: "Profile", icon: User },
+  { view: "home", icon: Home },
+  { view: "locations", icon: Globe },
+  { view: "search", icon: Search },
+  { view: "favorites", icon: Heart },
+  { view: "myPosts", icon: User },
 ];
 
 export default function Footer({ activeView, setActiveView }: FooterProps) {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-white shadow-t-md">
       <nav className="flex justify-around p-2">
-        {footerButtons.map(({ view, label, icon: Icon }) => {
+        {footerButtons.map(({ view, icon: Icon }) => {
           const isActive = activeView === view;
           const buttonClasses = `
             flex flex-col items-center justify-center w-full rounded-lg p-2
@@ -43,7 +45,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
               className={buttonClasses}
             >
               <Icon className="h-6 w-6 mb-1" />
-              <span className="text-xs">{label}</span>
+              <span className="text-xs">{t(`footer.${view}`)}</span>
             </button>
           );
         })}
