@@ -1,6 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { ViewType } from "./MainLayout";
-import { Home, Globe, Search, Heart, User } from "lucide-react";
+
+// カスタムSVGアイコンをReactコンポーネントとしてインポート
+import IconHome from "@/components/icons/home.svg";
+import IconLocations from "@/components/icons/locations.svg";
+import IconSearch from "@/components/icons/search.svg";
+import IconFavorites from "@/components/icons/favorites.svg";
+import IconMyPosts from "@/components/icons/my-posts.svg";
 
 type FooterProps = {
   activeView: ViewType;
@@ -13,11 +19,11 @@ type FooterButton = {
 };
 
 const footerButtons: FooterButton[] = [
-  { view: "home", icon: Home },
-  { view: "locations", icon: Globe },
-  { view: "search", icon: Search },
-  { view: "favorites", icon: Heart },
-  { view: "myPosts", icon: User },
+  { view: "home", icon: IconHome },
+  { view: "locations", icon: IconLocations },
+  { view: "search", icon: IconSearch },
+  { view: "favorites", icon: IconFavorites },
+  { view: "myPosts", icon: IconMyPosts },
 ];
 
 export default function Footer({ activeView, setActiveView }: FooterProps) {
@@ -44,7 +50,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
               onClick={() => setActiveView(view)}
               className={buttonClasses}
             >
-              <Icon className="h-6 w-6 mb-1" />
+              <Icon className="h-6 w-6 mb-1" aria-hidden="true" />
               <span className="text-xs">{t(`footer.${view}`)}</span>
             </button>
           );
