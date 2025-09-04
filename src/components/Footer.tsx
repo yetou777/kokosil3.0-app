@@ -34,15 +34,19 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
       <nav className="flex justify-around p-2">
         {footerButtons.map(({ view, icon: Icon }) => {
           const isActive = activeView === view;
-          const buttonClasses = `
-            flex flex-col items-center justify-center w-full rounded-lg p-2
+
+          const buttonClasses = `group flex flex-col items-center justify-center w-full rounded-lg p-2
             transition-colors duration-200
             ${
               isActive
-                ? "bg-primary/10 text-primary"
-                : "text-gray-500 hover:bg-gray-100"
+                ? "text-primary" // アクティブ時の文字色
+                : "text-gray-500"
             }
           `;
+
+          const iconWrapperClasses = `flex items-center justify-center h-10 w-16 rounded-full transition-colors duration-200 ${
+            isActive ? "bg-primary/10" : "group-hover:bg-gray-100"
+          }`;
 
           return (
             <button
@@ -50,8 +54,10 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
               onClick={() => setActiveView(view)}
               className={buttonClasses}
             >
-              <Icon className="h-6 w-6 mb-1" aria-hidden="true" />
-              <span className="text-xs">{t(`footer.${view}`)}</span>
+              <div className={iconWrapperClasses}>
+                <Icon className="h-6 w-6" aria-hidden="true" />
+              </div>
+              <span className="text-xs mt-1">{t(`footer.${view}`)}</span>
             </button>
           );
         })}
