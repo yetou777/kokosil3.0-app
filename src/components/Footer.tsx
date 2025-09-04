@@ -39,7 +39,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
             transition-colors duration-200
             ${
               isActive
-                ? "bg-blue-100 text-blue-600"
+                ? "bg-primary/10 text-primary"
                 : "text-gray-500 hover:bg-gray-100"
             }
           `;

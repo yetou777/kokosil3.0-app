@@ -10,7 +10,9 @@ export default function Header({ activeView, onToggleSidebar }: HeaderProps) {
   const { t } = useTranslation();
   return (
     <header className="bg-white shadow-md p-4 text-center relative">
-      <h1 className="text-xl font-bold">{t(`header.${activeView}`)}</h1>
+      <h1 className="text-xl font-bold text-primary">
+        {t(`header.${activeView}`)}
+      </h1>
       <div className="absolute top-0 right-0 h-full flex items-center pr-4 md:hidden">
         <button onClick={onToggleSidebar} className="p-1">
           <svg

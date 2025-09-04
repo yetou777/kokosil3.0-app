@@ -7,6 +7,9 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-noto-sans-jp)", "sans-serif"],
       },
+      colors: {
+        primary: "#31A52F",
+      },
     },
   },
   plugins: [],
