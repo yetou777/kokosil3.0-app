@@ -60,7 +60,11 @@ export default function MainLayout() {
         {/* サイドバー（PC用とスマホ用を含む） */}
         <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
         {/* メインコンテンツエリア */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main
+          className={`flex-1 overflow-y-auto no-scrollbar ${
+            activeView !== "favorites" ? "p-4" : ""
+          }`}
+        >
           {renderMainContent()}
         </main>
       </div>
