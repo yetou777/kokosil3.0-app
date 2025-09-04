@@ -6,7 +6,7 @@ type SidebarProps = {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
-      {/* --- PC用サイドバー (従来通り) --- */}
+      {/* --- PC用サイドバー (常時表示) --- */}
       <aside className="w-48 bg-gray-200 p-4 hidden md:block shrink-0">
         <h2 className="font-bold mb-2">サイドバー</h2>
         <ul>
@@ -15,9 +15,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </ul>
       </aside>
 
-      {/* --- スマホ用サイドバー (ここからが追加分) --- */}
+      {/* --- スマホ用サイドバー (オーバーレイ) --- */}
 
-      {/* サイドバー表示時の背景オーバーレイ */}
+      {/* オーバーレイ背景 */}
       <div
         className={`fixed inset-0 bg-black/40 backdrop-blur-lg z-30 transition-opacity ease-in-out duration-300 md:hidden ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
