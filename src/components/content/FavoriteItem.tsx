@@ -85,7 +85,7 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
             alt={item.title}
             width={128}
             height={128}
-            className="rounded-md object-cover w-32 h-32 bg-gray-200"
+            className="object-cover w-32 h-32 bg-gray-200"
           />
         </div>
         <div className="flex flex-col justify-between flex-grow min-w-0">
