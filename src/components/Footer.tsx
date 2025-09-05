@@ -2,11 +2,11 @@ import { useTranslation } from "react-i18next";
 import { ViewType } from "./MainLayout";
 
 // カスタムSVGアイコンをReactコンポーネントとしてインポート
-import IconHome from "@/components/icons/home.svg";
-import IconLocations from "@/components/icons/locations.svg";
-import IconSearch from "@/components/icons/search.svg";
-import IconFavorites from "@/components/icons/favorites.svg";
-import IconMyPosts from "@/components/icons/my-posts.svg";
+import IconHome from "@/components/icons/footer-home.svg";
+import IconLocations from "@/components/icons/footer-locations.svg";
+import IconSearch from "@/components/icons/footer-search.svg";
+import IconFavorites from "@/components/icons/footer-favorites.svg";
+import IconMyPosts from "@/components/icons/footer-my-posts.svg";
 
 type FooterProps = {
   activeView: ViewType;

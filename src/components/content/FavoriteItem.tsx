@@ -1,15 +1,14 @@
 // 新しいファイル: src/components/content/FavoriteItem.tsx
 
 import Image from "next/image";
-import {
-  HeartIcon,
-  MapPinIcon,
-  NewspaperIcon,
-  ChatBubbleLeftRightIcon,
-  MegaphoneIcon,
-} from "@heroicons/react/24/outline";
-import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import IconMapPin from "@/components/icons/item-map-pin.svg";
+import IconNewspaper from "@/components/icons/item-newspaper.svg";
+import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
+import IconMegaphone from "@/components/icons/item-megaphone.svg";
+import IconHeart from "@/components/icons/item-heart.svg";
+import IconHeartSolid from "@/components/icons/item-heart-solid.svg";
+import IconNew from "@/components/icons/item-new.svg";
 
 // コンテンツの型定義
 export type ContentType = "spot" | "article" | "review" | "news";
@@ -28,10 +27,10 @@ export type FavoriteItemData = {
 
 // コンテンツ種別ごとのアイコンをマッピング
 const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
-  spot: MapPinIcon,
-  article: NewspaperIcon,
-  review: ChatBubbleLeftRightIcon,
-  news: MegaphoneIcon,
+  spot: IconMapPin,
+  article: IconNewspaper,
+  review: IconChatBubble,
+  news: IconMegaphone,
 };
 
 export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
@@ -54,11 +53,7 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
         </div>
         <div className="flex items-center space-x-2">
           {/* 【A】新着アイコン */}
-          {item.isNew && (
-            <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">
-              NEW
-            </span>
-          )}
+          {item.isNew && <IconNew className="h-6 w-6 text-red-500" />}
           {/* 【B】コンテンツ種別アイコン */}
           <ContentTypeIcon className="h-6 w-6 text-gray-500" />
         </div>
@@ -106,9 +101,9 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
               className="p-1"
             >
               {isFavorite ? (
-                <SolidHeartIcon className="h-6 w-6 text-pink-500" />
+                <IconHeartSolid className="h-6 w-6 text-pink-500" />
               ) : (
-                <HeartIcon className="h-6 w-6 text-gray-400" />
+                <IconHeart className="h-6 w-6 text-gray-400" />
               )}
             </button>
           </div>
