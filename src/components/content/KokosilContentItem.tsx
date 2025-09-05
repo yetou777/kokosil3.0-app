@@ -13,7 +13,7 @@ import IconNew from "@/components/icons/item-new.svg";
 // コンテンツの型定義
 export type ContentType = "spot" | "article" | "review" | "news";
 
-export type KokosilContentItemData = {
+export type KokosilContentData = {
   id: number;
   contentType: ContentType;
   logoUrl: string;
@@ -33,7 +33,11 @@ const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
   news: IconMegaphone,
 };
 
-export default function KokosilContentItem({ item }: { item: KokosilContentItemData }) {
+export default function KokosilContentItem({
+  item,
+}: {
+  item: KokosilContentData;
+}) {
   const ContentTypeIcon = contentTypeIcons[item.contentType];
   const [isFavorite, setIsFavorite] = useState(true);
   const titleRef = useRef<HTMLHeadingElement>(null);
