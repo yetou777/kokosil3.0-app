@@ -31,7 +31,10 @@ const favoriteItems: FavoriteItemData[] = Array.from({ length: 20 }, (_, i) => {
   if (contentType === "article") {
     item.date = "2023年10月27日";
   } else if (contentType === "review" || contentType === "news") {
-    item.date = "2023年10月26日";
+    const hour = String(i % 24).padStart(2, "0");
+    const minute = String((i * 7) % 60).padStart(2, "0");
+    const second = String((i * 13) % 60).padStart(2, "0");
+    item.date = `2023年10月26日 ${hour}:${minute}:${second}`;
     item.author = dummyAuthors[i % 4];
   }
 
