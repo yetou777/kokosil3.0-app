@@ -55,9 +55,9 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
   }, [item.title]);
 
   return (
-    <div className="bg-white p-4 cursor-pointer border-b border-gray-200 last:border-b-0">
+    <div className="bg-white p-2 cursor-pointer border-b border-gray-200 last:border-b-0">
       {/* 上部: ロゴとアイコン */}
-      <div className="flex justify-between items-start mb-3">
+      <div className="flex justify-between items-start mb-1">
         <div className="flex-shrink-0">
           {/* ロゴイメージ */}
           <Image
@@ -102,7 +102,7 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
             </p>
           </div>
           {/* 下段: 日付/投稿者とCアイコン */}
-          <div className="flex justify-between items-end mt-1">
+          <div className="flex justify-between items-center mt-1">
             <div className="text-xs text-gray-500 truncate">
               {item.contentType === "article" && <span>{item.date}</span>}
               {(item.contentType === "review" ||
@@ -118,12 +118,12 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
                 e.stopPropagation(); // 親要素のクリックイベントを発火させない
                 setIsFavorite(!isFavorite);
               }}
-              className="p-1"
+              className="p-0.5"
             >
               {isFavorite ? (
-                <IconHeartSolid className="h-6 w-6 text-pink-500" />
+                <IconHeartSolid className="h-5 w-5 text-pink-500" />
               ) : (
-                <IconHeart className="h-6 w-6 text-gray-400" />
+                <IconHeart className="h-5 w-5 text-gray-400" />
               )}
             </button>
           </div>
