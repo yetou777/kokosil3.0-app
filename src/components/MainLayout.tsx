@@ -76,7 +76,9 @@ function MainContent() {
         {/* メインコンテンツエリア */}
         <main
           className={`flex-1 overflow-y-auto no-scrollbar ${
-            ["home", "favorites", "myPosts"].includes(activeView) ? "" : "p-4"
+            ["home", "favorites", "myPosts", "search"].includes(activeView)
+              ? ""
+              : "p-4"
           }`}
         >
           {renderMainContent()}
