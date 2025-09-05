@@ -1,6 +1,7 @@
 "use client"; // このファイルがクライアントコンポーネントであることを示すおまじない
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import "@/i18n"; // i18nextの初期化
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -19,11 +20,28 @@ export type ViewType =
   | "favorites"
   | "myPosts";
 
-export default function MainLayout() {
-  // 現在選択されているビューを管理するための状態(state)
-  // useStateの初期値として 'home' を設定
-  const [activeView, setActiveView] = useState<ViewType>("home");
+function MainContent() {
+  const searchParams = useSearchParams();
+  const view = searchParams.get("view");
+
+  // URLのクエリパラメータからアクティブなビューを決定
+  // パラメータが無効な場合は 'home' にフォールバック
+  const validViews: ViewType[] = [
+    "home",
+    "locations",
+    "search",
+    "favorites",
+    "myPosts",
+  ];
+  const activeView: ViewType = validViews.includes(view as ViewType)
+    ? (view as ViewType)
+    : "home";
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleToggleSidebar = useCallback(() => {
+    setIsSidebarOpen((prev) => !prev);
+  }, []);
 
   // 表示するメインコンテンツを動的に選択する
   const renderMainContent = () => {
@@ -42,10 +60,6 @@ export default function MainLayout() {
         return <HomeContent />;
     }
   };
-
-  const handleToggleSidebar = useCallback(() => {
-    setIsSidebarOpen((prev) => !prev);
-  }, []);
 
   const handleCloseSidebar = useCallback(() => {
     setIsSidebarOpen(false);
@@ -70,7 +84,15 @@ export default function MainLayout() {
       </div>
 
       {/* フッター */}
-      <Footer activeView={activeView} setActiveView={setActiveView} />
+      <Footer activeView={activeView} />
     </div>
+  );
+}
+
+export default function MainLayout() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
   );
 }

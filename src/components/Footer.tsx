@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ViewType } from "./MainLayout";
+import { useRouter } from "next/navigation";
 
 // カスタムSVGアイコンをReactコンポーネントとしてインポート
 import IconHome from "@/components/icons/footer-home.svg";
@@ -10,7 +11,6 @@ import IconMyPosts from "@/components/icons/footer-my-posts.svg";
 
 type FooterProps = {
   activeView: ViewType;
-  setActiveView: (view: ViewType) => void;
 };
 
 type FooterButton = {
@@ -26,8 +26,9 @@ const footerButtons: FooterButton[] = [
   { view: "myPosts", icon: IconMyPosts },
 ];
 
-export default function Footer({ activeView, setActiveView }: FooterProps) {
+export default function Footer({ activeView }: FooterProps) {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <footer className="bg-white border-t border-gray-200">
@@ -51,7 +52,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
           return (
             <button
               key={view}
-              onClick={() => setActiveView(view)}
+              onClick={() => router.push(`/?view=${view}`, { scroll: false })}
               className={buttonClasses}
             >
               <div className={iconWrapperClasses}>
