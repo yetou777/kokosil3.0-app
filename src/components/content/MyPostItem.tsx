@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  HandThumbUpIcon,
-  EllipsisVerticalIcon,
-} from "@heroicons/react/24/outline";
-import { HandThumbUpIcon as SolidHandThumbUpIcon } from "@heroicons/react/24/solid";
+import IconThumbUp from "@/components/icons/item-thumb-up.svg";
+import IconThumbUpSolid from "@/components/icons/item-thumb-up-solid.svg";
+import IconEllipsis from "@/components/icons/item-ellipsis.svg";
 
 // 投稿データの型定義
 export type MyPostItemData = {
@@ -68,27 +66,27 @@ export default function MyPostItem({ item }: { item: MyPostItemData }) {
       </div>
 
       {/* 下部: いいねとメニュー */}
-      <div className="flex justify-between items-center mt-3">
+      <div className="flex justify-between items-center mt-2">
         {/* 【A】いいねアイコンとカウント */}
         <div className="flex items-center space-x-2">
           <button
             onClick={handleLikeClick}
-            className="flex items-center space-x-1 text-gray-600 hover:text-pink-500 transition-colors"
+            className="group flex items-center space-x-1 text-gray-600 transition-colors"
           >
             {isLiked ? (
-              <SolidHandThumbUpIcon className="h-6 w-6 text-pink-500" />
+              <IconThumbUpSolid className="h-6 w-6 text-primary" />
             ) : (
-              <HandThumbUpIcon className="h-6 w-6" />
+              <IconThumbUp className="h-6 w-6 group-hover:text-primary" />
             )}
-            <span className={`font-semibold ${isLiked ? "text-pink-500" : ""}`}>
+            <span className={`font-semibold ${isLiked ? "text-primary" : ""}`}>
               {likeCount}
             </span>
           </button>
         </div>
 
         {/* 【B】三点リーダーアイコン */}
-        <button className="p-1 text-gray-500 hover:text-gray-800">
-          <EllipsisVerticalIcon className="h-6 w-6" />
+        <button className="p-1 text-gray-500 hover:text-gray-800 transition-colors">
+          <IconEllipsis className="h-6 w-6" />
         </button>
       </div>
     </div>
