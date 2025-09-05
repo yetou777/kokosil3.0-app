@@ -1,7 +1,7 @@
 // 新しいファイル: src/components/content/FavoriteItem.tsx
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import IconMapPin from "@/components/icons/item-map-pin.svg";
 import IconNewspaper from "@/components/icons/item-newspaper.svg";
 import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
@@ -36,6 +36,23 @@ const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
 export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
   const ContentTypeIcon = contentTypeIcons[item.contentType];
   const [isFavorite, setIsFavorite] = useState(true);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const [bodyLineClamp, setBodyLineClamp] = useState("line-clamp-4");
+
+  useLayoutEffect(() => {
+    const titleElement = titleRef.current;
+    if (titleElement) {
+      // タイトルの高さを一行の高さで割って、実際の行数を計算
+      const computedStyle = window.getComputedStyle(titleElement);
+      const lineHeight = parseFloat(computedStyle.lineHeight);
+      const titleHeight = titleElement.scrollHeight;
+      const lines = Math.round(titleHeight / lineHeight);
+
+      // タイトルが2行以上なら本文は3行、1行なら本文は4行に設定
+      setBodyLineClamp(lines >= 2 ? "line-clamp-3" : "line-clamp-4");
+    }
+    // item.title が変更された時に再計算する
+  }, [item.title]);
 
   return (
     <div className="bg-white p-4 cursor-pointer border-b border-gray-200 last:border-b-0">
@@ -74,10 +91,13 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
         <div className="flex flex-col justify-between flex-grow min-w-0">
           {/* 上段: タイトルと本文 */}
           <div>
-            <h3 className="text-lg font-bold text-gray-800 line-clamp-2 leading-tight">
+            <h3
+              ref={titleRef}
+              className="text-lg font-bold text-gray-800 line-clamp-2 leading-tight"
+            >
               {item.title}
             </h3>
-            <p className="text-sm text-gray-600 mt-1 line-clamp-4">
+            <p className={`text-sm text-gray-600 mt-1 ${bodyLineClamp}`}>
               {item.body}
             </p>
           </div>
