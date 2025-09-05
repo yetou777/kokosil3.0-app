@@ -1,4 +1,5 @@
 import MyPostItem, { MyPostItemData } from "./MyPostItem";
+import IconPlus from "@/components/icons/fab-plus.svg";
 
 const dummyLogos = [
   "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
@@ -20,10 +21,21 @@ const myPostItems: MyPostItemData[] = Array.from({ length: 20 }, (_, i) => ({
 
 export default function MyPostsContent() {
   return (
-    <div>
-      {myPostItems.map((item) => (
-        <MyPostItem key={item.id} item={item} />
-      ))}
-    </div>
+    <>
+      <div>
+        {myPostItems.map((item) => (
+          <MyPostItem key={item.id} item={item} />
+        ))}
+      </div>
+
+      {/* 新規投稿ボタン */}
+      <button
+        onClick={() => alert("投稿画面へ遷移します")}
+        className="fixed bottom-24 right-4 z-10 transition-transform hover:scale-105 active:scale-95"
+        aria-label="新規投稿"
+      >
+        <IconPlus />
+      </button>
+    </>
   );
 }
