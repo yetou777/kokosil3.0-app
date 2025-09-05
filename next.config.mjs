@@ -14,6 +14,26 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'picsum.photos',
             },
+            {
+                protocol: 'https',
+                hostname: 'ginza.kokosil.net',
+            },
+            {
+                protocol: 'https',
+                hostname: 'ueno.kokosil.net',
+            },
+            {
+                protocol: 'https',
+                hostname: 'akihabara.kokosil.net',
+            },
+            {
+                protocol: 'https',
+                hostname: 'ikebukuro.kokosil.net',
+            },
+            {
+                protocol: 'https',
+                hostname: 'komae.kokosil.net',
+            },
         ],
     },
 };

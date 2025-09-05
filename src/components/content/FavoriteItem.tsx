@@ -63,9 +63,9 @@ export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
           <Image
             src={item.logoUrl}
             alt="logo"
-            width={40}
+            width={150}
             height={40}
-            className="rounded-md bg-gray-200"
+            className=""
           />
         </div>
         <div className="flex items-center space-x-2">
