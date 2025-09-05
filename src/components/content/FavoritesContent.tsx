@@ -1,4 +1,4 @@
-import FavoriteItem, { FavoriteItemData, ContentType } from "./FavoriteItem";
+import KokosilContentItem, { KokosilContentItemData, ContentType } from "./KokosilContentItem";
 
 // 4種別のコンテンツが混在するダミーデータを生成
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
@@ -11,9 +11,9 @@ const dummyLogos = [
   "https://komae.kokosil.net/static/data/sites/00001c00000000000002000000270000/kokosil_site_api/images/logo_ja.png",
 ];
 
-const favoriteItems: FavoriteItemData[] = Array.from({ length: 20 }, (_, i) => {
+const favoriteItems: KokosilContentItemData[] = Array.from({ length: 20 }, (_, i) => {
   const contentType = contentTypes[i % 4];
-  const item: FavoriteItemData = {
+  const item: KokosilContentItemData = {
     id: i + 1,
     contentType: contentType,
     logoUrl: dummyLogos[i % 5],
@@ -45,7 +45,7 @@ export default function FavoritesContent() {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       {favoriteItems.map((item) => (
-        <FavoriteItem key={item.id} item={item} />
+        <KokosilContentItem key={item.id} item={item} />
       ))}
     </div>
   );

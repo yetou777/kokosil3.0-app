@@ -1,4 +1,4 @@
-// 新しいファイル: src/components/content/FavoriteItem.tsx
+// 新しいファイル: src/components/content/KokosilContentItem.tsx
 
 import Image from "next/image";
 import { useState, useLayoutEffect, useRef } from "react";
@@ -13,7 +13,7 @@ import IconNew from "@/components/icons/item-new.svg";
 // コンテンツの型定義
 export type ContentType = "spot" | "article" | "review" | "news";
 
-export type FavoriteItemData = {
+export type KokosilContentItemData = {
   id: number;
   contentType: ContentType;
   logoUrl: string;
@@ -33,7 +33,7 @@ const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
   news: IconMegaphone,
 };
 
-export default function FavoriteItem({ item }: { item: FavoriteItemData }) {
+export default function KokosilContentItem({ item }: { item: KokosilContentItemData }) {
   const ContentTypeIcon = contentTypeIcons[item.contentType];
   const [isFavorite, setIsFavorite] = useState(true);
   const titleRef = useRef<HTMLHeadingElement>(null);
