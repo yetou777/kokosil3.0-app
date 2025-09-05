@@ -9,7 +9,7 @@ type HeaderProps = {
 export default function Header({ activeView, onToggleSidebar }: HeaderProps) {
   const { t } = useTranslation();
   return (
-    <header className="bg-white shadow-md p-4 text-center relative">
+    <header className="bg-white p-4 text-center relative border-b border-gray-200">
       <h1 className="text-xl font-bold text-primary">
         {t(`header.${activeView}`)}
       </h1>
