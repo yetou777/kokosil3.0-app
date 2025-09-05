@@ -62,7 +62,7 @@ export default function MainLayout() {
         {/* メインコンテンツエリア */}
         <main
           className={`flex-1 overflow-y-auto no-scrollbar ${
-            ["favorites", "myPosts"].includes(activeView) ? "" : "p-4"
+            ["home", "favorites", "myPosts"].includes(activeView) ? "" : "p-4"
           }`}
         >
           {renderMainContent()}
