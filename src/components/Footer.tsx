@@ -57,7 +57,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
               <div className={iconWrapperClasses}>
                 <Icon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <span className={`text-xs mt-1 ${isActive ? "font-bold" : ""}`}>
+              <span className={`text-xs ${isActive ? "font-bold" : ""}`}>
                 {t(`footer.${view}`)}
               </span>
             </button>
