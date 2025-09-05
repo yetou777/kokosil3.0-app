@@ -1,22 +1,28 @@
-const myPostItems = Array.from({ length: 20 }, (_, i) => ({
+import MyPostItem, { MyPostItemData } from "./MyPostItem";
+
+const dummyLogos = [
+  "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
+  "https://ueno.kokosil.net/static/data/sites/00001c00000000000002000000310000/kokosil_site_api/images/logo_ja.png",
+  "https://akihabara.kokosil.net/static/data/sites/00001c00000000000002000000340000/kokosil_site_api/images/logo_ja.png",
+  "https://ikebukuro.kokosil.net/static/data/sites/00001c00000000000001000000220000/kokosil_site_api/images/logo_ja.png",
+  "https://komae.kokosil.net/static/data/sites/00001c00000000000002000000270000/kokosil_site_api/images/logo_ja.png",
+];
+
+const myPostItems: MyPostItemData[] = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
-  title: `自分の投稿 ${i + 1}`,
-  content: `これは自分の投稿${i + 1}の本文です。`,
+  spotName: `投稿先のスポット名 ${i + 1}`,
+  logoUrl: dummyLogos[i % 5],
+  title: `私の投稿タイトル ${i + 1}`,
+  body: `これは私の投稿の本文です。最大4行まで表示されるように設定されています。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。`,
+  mainImageUrl: `https://picsum.photos/seed/${i + 200}/500/281`,
+  likes: 10 + ((i * 3) % 17),
 }));
 
 export default function MyPostsContent() {
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      {myPostItems.map((item, index) => (
-        <div
-          key={item.id}
-          className={`p-4 ${
-            index < myPostItems.length - 1 ? "border-b border-gray-200" : ""
-          }`}
-        >
-          <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
-          <p className="text-gray-600 mt-1">{item.content}</p>
-        </div>
+    <div>
+      {myPostItems.map((item) => (
+        <MyPostItem key={item.id} item={item} />
       ))}
     </div>
   );
