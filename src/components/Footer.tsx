@@ -31,7 +31,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <nav className="flex justify-around p-2">
+      <nav className="flex justify-around px-2 pt-2 pb-3">
         {footerButtons.map(({ view, icon: Icon }) => {
           const isActive = activeView === view;
 
