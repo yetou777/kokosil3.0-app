@@ -35,7 +35,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
         {footerButtons.map(({ view, icon: Icon }) => {
           const isActive = activeView === view;
 
-          const buttonClasses = `group flex flex-col items-center justify-center w-full rounded-lg p-2
+          const buttonClasses = `group flex flex-col items-center justify-center w-full rounded-lg p-0
             transition-colors duration-200
             ${
               isActive
@@ -44,7 +44,7 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
             }
           `;
 
-          const iconWrapperClasses = `flex items-center justify-center h-10 w-16 rounded-full transition-colors duration-200 ${
+          const iconWrapperClasses = `flex items-center justify-center h-8 w-16 rounded-full transition-colors duration-200 ${
             isActive ? "bg-primary/10" : "group-hover:bg-gray-100"
           }`;
 
@@ -57,7 +57,9 @@ export default function Footer({ activeView, setActiveView }: FooterProps) {
               <div className={iconWrapperClasses}>
                 <Icon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <span className="text-xs mt-1">{t(`footer.${view}`)}</span>
+              <span className={`text-xs mt-1 ${isActive ? "font-bold" : ""}`}>
+                {t(`footer.${view}`)}
+              </span>
             </button>
           );
         })}
