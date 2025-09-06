@@ -3,11 +3,10 @@ import { useTranslation } from "react-i18next";
 import KokosilContentItem, {
   KokosilContentData,
   ContentType,
-} from "./KokosilContentItem";
+} from "@/components/shared/KokosilContentItem";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
+import ViewToggle from "@/components/shared/ViewToggle";
 import IconSearch from "@/components/icons/footer-search.svg";
-import IconMap from "@/components/icons/search-map.svg";
-import IconList from "@/components/icons/search-list.svg";
 
 // ダミーデータ (FavoritesContent.tsxから流用)
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
@@ -74,30 +73,10 @@ export default function SearchContent() {
             />
           </div>
           {/* 表示切替ボタン */}
-          <div className="flex-shrink-0 flex items-center text-sm">
-            <button
-              onClick={() => setDisplayMode("map")}
-              className={`flex h-9 items-center space-x-1 rounded-l-full border px-3 transition-colors ${
-                displayMode === "map"
-                  ? "bg-primary/10 text-primary border-primary z-10"
-                  : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
-              }`}
-            >
-              <IconMap className="h-5 w-5" />
-              <span className="leading-none">{t("search.mapView")}</span>
-            </button>
-            <button
-              onClick={() => setDisplayMode("list")}
-              className={`flex h-9 items-center space-x-1 rounded-r-full border -ml-px px-3 transition-colors ${
-                displayMode === "list"
-                  ? "bg-primary/10 text-primary border-primary z-10"
-                  : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
-              }`}
-            >
-              <IconList className="h-5 w-5 relative top-px" />
-              <span className="leading-none">{t("search.listView")}</span>
-            </button>
-          </div>
+          <ViewToggle
+            displayMode={displayMode}
+            setDisplayMode={setDisplayMode}
+          />
         </div>
 
         {/* 2段目: キーワードタグとフィルタ */}

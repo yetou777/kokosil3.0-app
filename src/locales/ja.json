@@ -14,7 +14,9 @@
     "myPosts": "自分の投稿"
   },
   "search": {
-    "placeholder": "ここを知る",
+    "placeholder": "ここを知る"
+  },
+  "viewToggle": {
     "mapView": "地図",
     "listView": "一覧"
   }

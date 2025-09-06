@@ -1,7 +1,7 @@
 import KokosilContentItem, {
   KokosilContentData,
   ContentType,
-} from "./KokosilContentItem";
+} from "@/components/shared/KokosilContentItem";
 
 // 4種別のコンテンツが混在するダミーデータを生成
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];

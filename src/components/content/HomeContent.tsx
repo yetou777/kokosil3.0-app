@@ -3,7 +3,9 @@ import React from "react";
 // Swiper ReactコンポーネントとCSSをインポート
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import KokosilSiteItem, { KokosilSiteData } from "./KokosilSiteItem";
+import KokosilSiteItem, {
+  KokosilSiteData,
+} from "@/components/shared/KokosilSiteItem";
 
 // GalleryView用のダミーデータ
 const galleryItems: KokosilSiteData[] = Array.from({ length: 10 }, (_, i) => ({
