@@ -6,9 +6,10 @@ import "leaflet-defaulticon-compatibility";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { KokosilContentData } from "./KokosilContentItem";
+import { KokosilSiteData } from "./KokosilSiteItem";
 
 type MapViewProps = {
-  items: KokosilContentData[];
+  items: (KokosilContentData | KokosilSiteData)[];
 };
 
 export default function MapView({ items }: MapViewProps) {

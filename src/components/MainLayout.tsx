@@ -74,13 +74,7 @@ function MainContent() {
         {/* サイドバー（PC用とスマホ用を含む） */}
         <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
         {/* メインコンテンツエリア */}
-        <main
-          className={`flex-1 overflow-y-auto no-scrollbar ${
-            ["home", "favorites", "myPosts", "search"].includes(activeView)
-              ? ""
-              : "p-4"
-          }`}
-        >
+        <main className="flex-1 overflow-y-auto no-scrollbar">
           {renderMainContent()}
         </main>
       </div>
