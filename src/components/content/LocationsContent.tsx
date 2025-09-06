@@ -97,6 +97,7 @@ export default function LocationsContent() {
           onClose={() => setIsSortPanelOpen(false)}
           title={t("locations.sortTitle")}
           direction="left"
+          topPosition="top-16"
         >
           <p className="text-gray-500">並び替え機能は後ほど実装します。</p>
         </SlideInPanel>

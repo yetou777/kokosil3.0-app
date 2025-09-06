@@ -8,6 +8,7 @@ type SlideInPanelProps = {
   onClose: () => void;
   title: string;
   direction?: "left" | "right";
+  topPosition?: string;
   children: ReactNode;
 };
 
@@ -16,6 +17,7 @@ export default function SlideInPanel({
   onClose,
   title,
   direction = "right",
+  topPosition = "top-[6.25rem]",
   children,
 }: SlideInPanelProps) {
   return (
@@ -29,7 +31,7 @@ export default function SlideInPanel({
 
       {/* Panel */}
       <div
-        className={`absolute top-[6.25rem] w-full bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+        className={`absolute ${topPosition} w-full bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
           direction === "right"
             ? `right-0 ${isOpen ? "translate-x-0" : "translate-x-full"}`
             : `left-0 ${isOpen ? "translate-x-0" : "-translate-x-full"}`
