@@ -1,14 +1,13 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import KokosilContentItem, {
   KokosilContentData,
   ContentType,
 } from "./KokosilContentItem";
-import {
-  MagnifyingGlassIcon,
-  MapIcon,
-  QueueListIcon,
-  AdjustmentsHorizontalIcon,
-} from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
+import IconSearch from "@/components/icons/footer-search.svg";
+import IconMap from "@/components/icons/search-map.svg";
+import IconList from "@/components/icons/search-list.svg";
 
 // ダミーデータ (FavoritesContent.tsxから流用)
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
@@ -29,9 +28,15 @@ const searchResults: KokosilContentData[] = Array.from(
       mainImageUrl: `https://picsum.photos/seed/${i + 100}/128/128`,
       isNew: i % 6 === 0,
       title: `検索結果 ${i + 1}: 「${contentType}」のタイトル`,
-      body: `これは検索結果の本文です。アイテム${i + 1}の概要がここに表示されます。`,
+      body: `これは検索結果の本文です。アイテム${
+        i + 1
+      }の概要がここに表示されます。`,
     };
-    if (contentType === "article" || contentType === "review" || contentType === "news") {
+    if (
+      contentType === "article" ||
+      contentType === "review" ||
+      contentType === "news"
+    ) {
       item.date = "2023年10月28日";
       item.author = dummyAuthors[i % 4];
     }
@@ -39,10 +44,20 @@ const searchResults: KokosilContentData[] = Array.from(
   }
 );
 
-const dummyKeywords = ["銀座", "ランチ", "美術館", "イベント", "お土産", "夜景", "カフェ", "限定"];
+const dummyKeywords = [
+  "銀座",
+  "ランチ",
+  "美術館",
+  "イベント",
+  "お土産",
+  "夜景",
+  "カフェ",
+  "限定",
+];
 
 export default function SearchContent() {
   const [displayMode, setDisplayMode] = useState<"list" | "map">("list");
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -51,16 +66,37 @@ export default function SearchContent() {
         {/* 1段目: 検索入力と表示切替 */}
         <div className="flex items-center space-x-2">
           <div className="relative flex-grow">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
               type="text"
-              placeholder="キーワードで検索"
-              className="w-full rounded-full border border-gray-300 bg-white py-2 pl-10 pr-4 focus:border-primary focus:ring-primary"
+              placeholder={t("search.placeholder")}
+              className="h-9 w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 focus:border-primary focus:ring-primary"
             />
           </div>
-          <div className="flex rounded-full border border-gray-300 p-0.5">
-            <button onClick={() => setDisplayMode("map")} className={`p-1.5 rounded-full ${displayMode === 'map' ? 'bg-primary text-white' : 'text-gray-500'}`}><MapIcon className="h-5 w-5"/></button>
-            <button onClick={() => setDisplayMode("list")} className={`p-1.5 rounded-full ${displayMode === 'list' ? 'bg-primary text-white' : 'text-gray-500'}`}><QueueListIcon className="h-5 w-5"/></button>
+          {/* 表示切替ボタン */}
+          <div className="flex-shrink-0 flex items-center text-sm">
+            <button
+              onClick={() => setDisplayMode("map")}
+              className={`flex h-9 items-center space-x-1 rounded-l-full border px-3 transition-colors ${
+                displayMode === "map"
+                  ? "bg-primary/10 text-primary border-primary z-10"
+                  : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
+              }`}
+            >
+              <IconMap className="h-5 w-5" />
+              <span className="leading-none">{t("search.mapView")}</span>
+            </button>
+            <button
+              onClick={() => setDisplayMode("list")}
+              className={`flex h-9 items-center space-x-1 rounded-r-full border -ml-px px-3 transition-colors ${
+                displayMode === "list"
+                  ? "bg-primary/10 text-primary border-primary z-10"
+                  : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
+              }`}
+            >
+              <IconList className="h-5 w-5 relative top-px" />
+              <span className="leading-none">{t("search.listView")}</span>
+            </button>
           </div>
         </div>
 
@@ -68,8 +104,13 @@ export default function SearchContent() {
         <div className="mt-2 flex items-center">
           <div className="flex-grow overflow-x-auto no-scrollbar">
             <div className="flex space-x-2">
-              {dummyKeywords.map(key => (
-                <button key={key} className="whitespace-nowrap rounded-full bg-white px-3 py-1 text-sm border border-gray-300 hover:bg-gray-50">{key}</button>
+              {dummyKeywords.map((key) => (
+                <button
+                  key={key}
+                  className="whitespace-nowrap rounded-full bg-white px-3 py-1 text-sm border border-gray-300 hover:bg-gray-50"
+                >
+                  {key}
+                </button>
               ))}
             </div>
           </div>

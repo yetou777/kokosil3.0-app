@@ -12,5 +12,10 @@
     "search": "検索",
     "favorites": "お気に入り",
     "myPosts": "自分の投稿"
+  },
+  "search": {
+    "placeholder": "ここを知る",
+    "mapView": "地図",
+    "listView": "一覧"
   }
 }
