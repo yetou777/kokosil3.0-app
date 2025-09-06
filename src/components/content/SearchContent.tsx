@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
 import KokosilContentItem, {
   KokosilContentData,
   ContentType,
 } from "@/components/shared/KokosilContentItem";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
-import ViewToggle from "@/components/shared/ViewToggle";
+import ViewToggle, { DisplayMode } from "@/components/shared/ViewToggle";
+import SlideInPanel from "@/components/shared/SlideInPanel";
 import IconSearch from "@/components/icons/footer-search.svg";
+import IconFilter from "@/components/icons/search-filter.svg";
+import IconMapPin from "@/components/icons/item-map-pin.svg";
+import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
+import IconMegaphone from "@/components/icons/item-megaphone.svg";
+import IconNewspaper from "@/components/icons/item-newspaper.svg";
+import "swiper/css";
 
 // ダミーデータ (FavoritesContent.tsxから流用)
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
@@ -54,16 +61,25 @@ const dummyKeywords = [
   "限定",
 ];
 
+const filterCategories = [
+  { type: "spot", icon: IconMapPin },
+  { type: "review", icon: IconChatBubble },
+  { type: "news", icon: IconMegaphone },
+  { type: "article", icon: IconNewspaper },
+];
+
 export default function SearchContent() {
-  const [displayMode, setDisplayMode] = useState<"list" | "map">("list");
+  const [displayMode, setDisplayMode] = useState<DisplayMode>("list");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [selectedKeyword, setSelectedKeyword] = useState<string | null>(null);
   const { t } = useTranslation();
 
   return (
     <div>
       {/* 上部: 検索コントロール */}
-      <div className="sticky top-0 z-10 bg-gray-100 p-2 shadow">
+      <div className="sticky top-0 z-10 bg-white p-2 border-b border-gray-200">
         {/* 1段目: 検索入力と表示切替 */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 pt-1">
           <div className="relative flex-grow">
             <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -81,28 +97,37 @@ export default function SearchContent() {
 
         {/* 2段目: キーワードタグとフィルタ */}
         <div className="mt-2 flex items-center">
-          <div className="flex-grow overflow-x-auto no-scrollbar">
-            <div className="flex space-x-2">
-              {dummyKeywords.map((key) => (
-                <button
-                  key={key}
-                  className="whitespace-nowrap rounded-full bg-white px-3 py-1 text-sm border border-gray-300 hover:bg-gray-50"
-                >
-                  {key}
-                </button>
-              ))}
-            </div>
+          <div className="flex-grow overflow-hidden">
+            <Swiper slidesPerView={"auto"} spaceBetween={8} className="!py-1">
+              {dummyKeywords.map((key) => {
+                const isActive = key === selectedKeyword;
+                return (
+                  <SwiperSlide key={key} className="!w-auto">
+                    <button
+                      onClick={() => setSelectedKeyword(isActive ? null : key)}
+                      className={`whitespace-nowrap rounded-full px-3 py-1 text-sm border transition-colors ${
+                        isActive
+                          ? "bg-primary/10 text-primary border-primary"
+                          : "bg-white border-gray-300 text-gray-500 hover:bg-gray-100"
+                      }`}
+                    >
+                      {key}
+                    </button>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
           <div className="ml-2 flex-shrink-0">
-            <button className="rounded-full bg-white p-2 border border-gray-300 hover:bg-gray-50">
-              <AdjustmentsHorizontalIcon className="h-5 w-5 text-gray-600" />
+            <button onClick={() => setIsFilterOpen(true)} className="p-2 -mr-2">
+              <IconFilter className="h-6 w-6 text-gray-500" />
             </button>
           </div>
         </div>
       </div>
 
       {/* 下部: 検索結果 */}
-      <div className="mt-2">
+      <div>
         {displayMode === "list" ? (
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             {searchResults.map((item) => (
@@ -115,6 +140,27 @@ export default function SearchContent() {
           </div>
         )}
       </div>
+
+      {/* 絞り込みダイアログ */}
+      <SlideInPanel
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        title={t("search.filterTitle")}
+      >
+        <div className="grid grid-cols-4 gap-4 text-center">
+          {filterCategories.map(({ type, icon: Icon }) => (
+            <button
+              key={type}
+              className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              <Icon className="h-8 w-8 text-gray-600" />
+              <span className="text-xs text-gray-700">
+                {t(`contentType.${type}`)}
+              </span>
+            </button>
+          ))}
+        </div>
+      </SlideInPanel>
     </div>
   );
 }

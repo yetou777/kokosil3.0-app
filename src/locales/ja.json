@@ -14,10 +14,17 @@
     "myPosts": "自分の投稿"
   },
   "search": {
-    "placeholder": "ここを知る"
+    "placeholder": "ここを知る",
+    "filterTitle": "絞り込み"
   },
   "viewToggle": {
     "mapView": "地図",
     "listView": "一覧"
+  },
+  "contentType": {
+    "spot": "スポット",
+    "review": "口コミ",
+    "news": "最新情報",
+    "article": "記事"
   }
 }
