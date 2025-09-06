@@ -121,7 +121,7 @@ export default function SearchContent() {
         </div>
         <div className="ml-2 flex-shrink-0">
           {displayMode === "list" && (
-            <button onClick={() => setIsFilterOpen(true)} className="p-2 -mr-2">
+            <button onClick={() => setIsFilterOpen(true)} className="p-1 -mr-2">
               <IconFilter className="h-6 w-6 text-gray-500" />
             </button>
           )}

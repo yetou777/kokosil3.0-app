@@ -21,6 +21,10 @@
     "mapView": "地図",
     "listView": "一覧"
   },
+  "locations": {
+    "placeholder": "ココシルを検索",
+    "sortTitle": "並び替え"
+  },
   "contentType": {
     "spot": "スポット",
     "review": "口コミ",
