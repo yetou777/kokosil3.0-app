@@ -10,10 +10,10 @@ import ViewToggle, { DisplayMode } from "@/components/shared/ViewToggle";
 import SlideInPanel from "@/components/shared/SlideInPanel";
 import IconSearch from "@/components/icons/footer-search.svg";
 import IconFilter from "@/components/icons/search-filter.svg";
-import IconMapPin from "@/components/icons/item-map-pin.svg";
-import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
-import IconMegaphone from "@/components/icons/item-megaphone.svg";
-import IconNewspaper from "@/components/icons/item-newspaper.svg";
+import IconContentTypeSpot from "@/components/icons/content-type-spot.svg";
+import IconContentTypeReview from "@/components/icons/content-type-review.svg";
+import IconContentTypeNews from "@/components/icons/content-type-news.svg";
+import IconContentTypeArticle from "@/components/icons/content-type-article.svg";
 import "swiper/css";
 
 const MapView = dynamic(() => import("@/components/shared/MapView"), {
@@ -68,10 +68,10 @@ const dummyKeywords = [
 ];
 
 const filterCategories = [
-  { type: "spot", icon: IconMapPin },
-  { type: "review", icon: IconChatBubble },
-  { type: "news", icon: IconMegaphone },
-  { type: "article", icon: IconNewspaper },
+  { type: "spot", icon: IconContentTypeSpot },
+  { type: "review", icon: IconContentTypeReview },
+  { type: "news", icon: IconContentTypeNews },
+  { type: "article", icon: IconContentTypeArticle },
 ];
 
 export default function SearchContent() {

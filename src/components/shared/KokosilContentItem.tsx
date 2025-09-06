@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useState, useLayoutEffect, useRef } from "react";
-import IconMapPin from "@/components/icons/item-map-pin.svg";
-import IconNewspaper from "@/components/icons/item-newspaper.svg";
-import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
-import IconMegaphone from "@/components/icons/item-megaphone.svg";
+import IconContentTypeSpot from "@/components/icons/content-type-spot.svg";
+import IconContentTypeArticle from "@/components/icons/content-type-article.svg";
+import IconContentTypeReview from "@/components/icons/content-type-review.svg";
+import IconContentTypeNews from "@/components/icons/content-type-news.svg";
 import IconHeart from "@/components/icons/item-heart.svg";
 import IconHeartSolid from "@/components/icons/item-heart-solid.svg";
 import IconNew from "@/components/icons/item-new.svg";
@@ -27,10 +27,10 @@ export type KokosilContentData = {
 
 // コンテンツ種別ごとのアイコンをマッピング
 const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
-  spot: IconMapPin,
-  article: IconNewspaper,
-  review: IconChatBubble,
-  news: IconMegaphone,
+  spot: IconContentTypeSpot,
+  article: IconContentTypeArticle,
+  review: IconContentTypeReview,
+  news: IconContentTypeNews,
 };
 
 export default function KokosilContentItem({
