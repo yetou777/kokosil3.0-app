@@ -80,75 +80,82 @@ export default function SearchContent() {
   const [selectedKeyword, setSelectedKeyword] = useState<string | null>(null);
   const { t } = useTranslation();
 
-  return (
-    <div className="flex flex-col h-full">
-      {/* 上部: 検索コントロール */}
-      <div className="sticky top-0 z-10 bg-white p-2 border-b border-gray-200">
-        {/* 1段目: 検索入力と表示切替 */}
-        <div className="flex items-center space-x-2 pt-1">
-          <div className="relative flex-grow">
-            <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder={t("search.placeholder")}
-              className="h-9 w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 focus:border-primary focus:ring-primary"
-            />
-          </div>
-          {/* 表示切替ボタン */}
-          <ViewToggle
-            displayMode={displayMode}
-            setDisplayMode={setDisplayMode}
+  const searchControls = (
+    <>
+      {/* 1段目: 検索入力と表示切替 */}
+      <div className="flex items-center space-x-2 pt-1">
+        <div className="relative flex-grow">
+          <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+          <input
+            type="text"
+            placeholder={t("search.placeholder")}
+            className="h-9 w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 focus:border-primary focus:ring-primary"
           />
         </div>
+        {/* 表示切替ボタン */}
+        <ViewToggle displayMode={displayMode} setDisplayMode={setDisplayMode} />
+      </div>
 
-        {/* 2段目: キーワードタグとフィルタ */}
-        <div className="mt-2 flex items-center">
-          <div className="flex-grow overflow-hidden">
-            <Swiper slidesPerView={"auto"} spaceBetween={8} className="!py-1">
-              {dummyKeywords.map((key) => {
-                const isActive = key === selectedKeyword;
-                return (
-                  <SwiperSlide key={key} className="!w-auto">
-                    <button
-                      onClick={() => setSelectedKeyword(isActive ? null : key)}
-                      className={`whitespace-nowrap rounded-full px-3 py-1 text-sm border transition-colors ${
-                        isActive
-                          ? "bg-primary/10 text-primary border-primary"
-                          : "bg-white border-gray-300 text-gray-500 hover:bg-gray-100"
-                      }`}
-                    >
-                      {key}
-                    </button>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-          <div className="ml-2 flex-shrink-0">
-            {displayMode === "list" && (
-              <button
-                onClick={() => setIsFilterOpen(true)}
-                className="p-2 -mr-2"
-              >
-                <IconFilter className="h-6 w-6 text-gray-500" />
-              </button>
-            )}
-          </div>
+      {/* 2段目: キーワードタグとフィルタ */}
+      <div className="mt-2 flex items-center">
+        <div className="flex-grow overflow-hidden">
+          <Swiper slidesPerView={"auto"} spaceBetween={8} className="!py-1">
+            {dummyKeywords.map((key) => {
+              const isActive = key === selectedKeyword;
+              return (
+                <SwiperSlide key={key} className="!w-auto">
+                  <button
+                    onClick={() => setSelectedKeyword(isActive ? null : key)}
+                    className={`whitespace-nowrap rounded-full px-3 py-1 text-sm border transition-colors ${
+                      isActive
+                        ? "bg-green-50 text-primary border-primary"
+                        : "bg-white border-gray-300 text-gray-500 hover:bg-gray-100"
+                    }`}
+                  >
+                    {key}
+                  </button>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+        <div className="ml-2 flex-shrink-0">
+          {displayMode === "list" && (
+            <button onClick={() => setIsFilterOpen(true)} className="p-2 -mr-2">
+              <IconFilter className="h-6 w-6 text-gray-500" />
+            </button>
+          )}
         </div>
       </div>
+    </>
+  );
 
-      {/* 下部: 検索結果 */}
-      <div className="flex-1">
-        {displayMode === "list" ? (
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            {searchResults.map((item) => (
-              <KokosilContentItem key={item.id} item={item} />
-            ))}
+  return (
+    <div className="h-full w-full">
+      {displayMode === "list" ? (
+        <div className="flex flex-col h-full">
+          {/* 上部: 検索コントロール */}
+          <div className="sticky top-0 z-10 bg-white p-2 border-b border-gray-200">
+            {searchControls}
           </div>
-        ) : (
+
+          {/* 下部: 検索結果 */}
+          <div className="flex-1">
+            <div className="bg-white shadow overflow-hidden sm:rounded-lg">
+              {searchResults.map((item) => (
+                <KokosilContentItem key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="relative h-full w-full">
           <MapView items={searchResults} />
-        )}
-      </div>
+          <div className="absolute top-0 left-0 right-0 z-10 p-2">
+            {searchControls}
+          </div>
+        </div>
+      )}
 
       {/* 絞り込みダイアログ */}
       <SlideInPanel

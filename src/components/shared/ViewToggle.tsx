@@ -23,7 +23,7 @@ export default function ViewToggle({
         onClick={() => setDisplayMode("map")}
         className={`flex h-9 items-center space-x-1 rounded-l-full border px-3 transition-colors ${
           displayMode === "map"
-            ? "bg-primary/10 text-primary border-primary z-10"
+            ? "z-10 bg-green-50 text-primary border-primary"
             : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
         }`}
       >
@@ -34,7 +34,7 @@ export default function ViewToggle({
         onClick={() => setDisplayMode("list")}
         className={`flex h-9 items-center space-x-1 rounded-r-full border -ml-px px-3 transition-colors ${
           displayMode === "list"
-            ? "bg-primary/10 text-primary border-primary z-10"
+            ? "z-10 bg-green-50 text-primary border-primary"
             : "bg-white text-gray-500 hover:bg-gray-100 border-gray-300"
         }`}
       >

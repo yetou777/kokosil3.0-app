@@ -20,7 +20,7 @@ export default function MapView({ items }: MapViewProps) {
       center={position}
       zoom={14}
       scrollWheelZoom={true}
-      className="h-full w-full"
+      className="h-full w-full z-0"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
