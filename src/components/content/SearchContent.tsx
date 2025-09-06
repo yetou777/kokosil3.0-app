@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import dynamic from "next/dynamic";
 import { Swiper, SwiperSlide } from "swiper/react";
 import KokosilContentItem, {
   KokosilContentData,
@@ -14,6 +15,11 @@ import IconChatBubble from "@/components/icons/item-chat-bubble.svg";
 import IconMegaphone from "@/components/icons/item-megaphone.svg";
 import IconNewspaper from "@/components/icons/item-newspaper.svg";
 import "swiper/css";
+
+const MapView = dynamic(() => import("@/components/shared/MapView"), {
+  ssr: false,
+  loading: () => <p>Map is loading...</p>,
+});
 
 // ダミーデータ (FavoritesContent.tsxから流用)
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
@@ -75,7 +81,7 @@ export default function SearchContent() {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       {/* 上部: 検索コントロール */}
       <div className="sticky top-0 z-10 bg-white p-2 border-b border-gray-200">
         {/* 1段目: 検索入力と表示切替 */}
@@ -119,15 +125,20 @@ export default function SearchContent() {
             </Swiper>
           </div>
           <div className="ml-2 flex-shrink-0">
-            <button onClick={() => setIsFilterOpen(true)} className="p-2 -mr-2">
-              <IconFilter className="h-6 w-6 text-gray-500" />
-            </button>
+            {displayMode === "list" && (
+              <button
+                onClick={() => setIsFilterOpen(true)}
+                className="p-2 -mr-2"
+              >
+                <IconFilter className="h-6 w-6 text-gray-500" />
+              </button>
+            )}
           </div>
         </div>
       </div>
 
       {/* 下部: 検索結果 */}
-      <div>
+      <div className="flex-1">
         {displayMode === "list" ? (
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             {searchResults.map((item) => (
@@ -135,9 +146,7 @@ export default function SearchContent() {
             ))}
           </div>
         ) : (
-          <div className="flex h-[60vh] items-center justify-center bg-gray-300 text-gray-600">
-            <p>マップ表示エリア</p>
-          </div>
+          <MapView items={searchResults} />
         )}
       </div>
 
