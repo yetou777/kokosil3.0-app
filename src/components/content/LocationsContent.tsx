@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import ViewToggle, { DisplayMode } from "@/components/shared/ViewToggle";
 import SlideInPanel from "@/components/shared/SlideInPanel";
+import CustomRadio from "@/components/shared/CustomRadio";
 import KokosilSiteItem, {
   KokosilSiteData,
 } from "@/components/shared/KokosilSiteItem";
@@ -100,31 +101,23 @@ export default function LocationsContent() {
           direction="left"
           topPosition="top-16"
         >
-          <div className="space-y-6 my-4">
-            <label className="flex items-center space-x-3 cursor-pointer">
-              <input
-                type="radio"
-                name="sortOption"
-                value="recentlyViewed"
-                checked={sortOption === "recentlyViewed"}
-                onChange={(e) => setSortOption(e.target.value)}
-                className="h-5 w-5 text-primary focus:ring-primary"
-              />
-              <span className="text-gray-700">
-                {t("locations.recentlyViewed")}
-              </span>
-            </label>
-            <label className="flex items-center space-x-3 cursor-pointer">
-              <input
-                type="radio"
-                name="sortOption"
-                value="nearby"
-                checked={sortOption === "nearby"}
-                onChange={(e) => setSortOption(e.target.value)}
-                className="h-5 w-5 text-primary focus:ring-primary"
-              />
-              <span className="text-gray-700">{t("locations.nearby")}</span>
-            </label>
+          <div className="my-4 space-y-6">
+            <CustomRadio
+              name="sortOption"
+              value="recentlyViewed"
+              checked={sortOption === "recentlyViewed"}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              {t("locations.recentlyViewed")}
+            </CustomRadio>
+            <CustomRadio
+              name="sortOption"
+              value="nearby"
+              checked={sortOption === "nearby"}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              {t("locations.nearby")}
+            </CustomRadio>
           </div>
         </SlideInPanel>
       )}
