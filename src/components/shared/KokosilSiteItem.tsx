@@ -15,7 +15,7 @@ type KokosilSiteItemProps = {
 
 export default function KokosilSiteItem({ item }: KokosilSiteItemProps) {
   return (
-    <div className="w-full h-full bg-white shadow-lg overflow-hidden flex flex-col border-2 border-gray-200">
+    <div className="w-full h-full bg-white overflow-hidden flex flex-col border-2 border-gray-200">
       {/* 上部: ココシルサイトイメージ */}
       <div className="relative w-full h-1/2">
         <Image
