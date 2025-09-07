@@ -19,7 +19,7 @@ export function middleware(req: NextRequest) {
   if (basicAuth) {
     const authValue = basicAuth.split(" ")[1];
     // atob is a built-in function for decoding base64
-    const [user, pwd] = atob(authValue).split(":");
+    const [user, pwd] = Buffer.from(authValue, "base64").toString().split(":");
 
     const validUser = process.env.BASIC_AUTH_USER;
     const validPass = process.env.BASIC_AUTH_PASS;
