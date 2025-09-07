@@ -30,6 +30,7 @@ const dummySiteItems: KokosilSiteData[] = Array.from(
 export default function LocationsContent() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>("map");
   const [isSortPanelOpen, setIsSortPanelOpen] = useState(false);
+  const [sortOption, setSortOption] = useState("recentlyViewed");
   const { t } = useTranslation();
 
   // 一覧表示用のコントロール
@@ -99,7 +100,32 @@ export default function LocationsContent() {
           direction="left"
           topPosition="top-16"
         >
-          <p className="text-gray-500">並び替え機能は後ほど実装します。</p>
+          <div className="space-y-6 my-4">
+            <label className="flex items-center space-x-3 cursor-pointer">
+              <input
+                type="radio"
+                name="sortOption"
+                value="recentlyViewed"
+                checked={sortOption === "recentlyViewed"}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="h-5 w-5 text-primary focus:ring-primary"
+              />
+              <span className="text-gray-700">
+                {t("locations.recentlyViewed")}
+              </span>
+            </label>
+            <label className="flex items-center space-x-3 cursor-pointer">
+              <input
+                type="radio"
+                name="sortOption"
+                value="nearby"
+                checked={sortOption === "nearby"}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="h-5 w-5 text-primary focus:ring-primary"
+              />
+              <span className="text-gray-700">{t("locations.nearby")}</span>
+            </label>
+          </div>
         </SlideInPanel>
       )}
     </div>

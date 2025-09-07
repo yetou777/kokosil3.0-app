@@ -23,7 +23,9 @@
   },
   "locations": {
     "placeholder": "ココシルを検索",
-    "sortTitle": "並び替え"
+    "sortTitle": "並び替え",
+    "recentlyViewed": "最近見たココシル",
+    "nearby": "近くにあるココシル"
   },
   "contentType": {
     "spot": "スポット",
