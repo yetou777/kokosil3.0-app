@@ -8,7 +8,7 @@ import KokosilContentItem, {
 } from "@/components/shared/KokosilContentItem";
 import ViewToggle, { DisplayMode } from "@/components/shared/ViewToggle";
 import SlideInPanel from "@/components/shared/SlideInPanel";
-import IconSearch from "@/components/icons/footer-search.svg";
+import SearchInput from "@/components/shared/SearchInput";
 import IconFilter from "@/components/icons/search-filter.svg";
 import IconContentTypeSpot from "@/components/icons/content-type-spot.svg";
 import IconContentTypeReview from "@/components/icons/content-type-review.svg";
@@ -84,14 +84,7 @@ export default function SearchContent() {
     <>
       {/* 1段目: 検索入力と表示切替 */}
       <div className="flex items-center space-x-2 pt-1">
-        <div className="relative flex-grow">
-          <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder={t("search.placeholder")}
-            className="h-9 w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 focus:border-primary focus:ring-primary"
-          />
-        </div>
+        <SearchInput placeholder={t("search.placeholder")} />
         {/* 表示切替ボタン */}
         <ViewToggle displayMode={displayMode} setDisplayMode={setDisplayMode} />
       </div>

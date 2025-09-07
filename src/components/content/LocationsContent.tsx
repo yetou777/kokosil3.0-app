@@ -7,8 +7,8 @@ import CustomRadio from "@/components/shared/CustomRadio";
 import KokosilSiteItem, {
   KokosilSiteData,
 } from "@/components/shared/KokosilSiteItem";
+import SearchInput from "@/components/shared/SearchInput";
 import IconSort from "@/components/icons/locations-sort.svg";
-import IconSearch from "@/components/icons/footer-search.svg";
 
 const MapView = dynamic(() => import("@/components/shared/MapView"), {
   ssr: false,
@@ -44,14 +44,7 @@ export default function LocationsContent() {
         <IconSort className="h-6 w-6 text-gray-500" />
       </button>
 
-      <div className="relative flex-grow">
-        <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-        <input
-          type="text"
-          placeholder={t("locations.placeholder")}
-          className="h-9 w-full rounded-full border border-gray-300 bg-white pl-10 pr-4 focus:border-primary focus:ring-primary"
-        />
-      </div>
+      <SearchInput placeholder={t("locations.placeholder")} />
 
       <ViewToggle displayMode={displayMode} setDisplayMode={setDisplayMode} />
     </div>
