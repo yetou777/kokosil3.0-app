@@ -9,6 +9,7 @@ import KokosilSiteItem, {
 } from "@/components/shared/KokosilSiteItem";
 import SearchInput from "@/components/shared/SearchInput";
 import IconSort from "@/components/icons/locations-sort.svg";
+import { dummyLogos } from "@/lib/dummyData";
 
 const MapView = dynamic(() => import("@/components/shared/MapView"), {
   ssr: false,
@@ -23,8 +24,7 @@ const dummySiteItems: KokosilSiteData[] = Array.from(
     name: `各地のココシル ${i + 1}`,
     description: `これは各地のココシルサイトの説明文です。このエリアの魅力や特徴を紹介します。`,
     siteImageUrl: `https://picsum.photos/seed/${i + 400}/800/600`,
-    logoUrl:
-      "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
+    logoUrl: dummyLogos[i % dummyLogos.length],
   })
 );
 

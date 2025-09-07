@@ -1,18 +1,11 @@
 import MyPostItem, { MyPostItemData } from "./MyPostItem";
 import IconPlus from "@/components/icons/fab-plus.svg";
-
-const dummyLogos = [
-  "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
-  "https://ueno.kokosil.net/static/data/sites/00001c00000000000002000000310000/kokosil_site_api/images/logo_ja.png",
-  "https://akihabara.kokosil.net/static/data/sites/00001c00000000000002000000340000/kokosil_site_api/images/logo_ja.png",
-  "https://ikebukuro.kokosil.net/static/data/sites/00001c00000000000001000000220000/kokosil_site_api/images/logo_ja.png",
-  "https://komae.kokosil.net/static/data/sites/00001c00000000000002000000270000/kokosil_site_api/images/logo_ja.png",
-];
+import { dummyLogos } from "@/lib/dummyData";
 
 const myPostItems: MyPostItemData[] = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,
   spotName: `投稿先のスポット名 ${i + 1}`,
-  logoUrl: dummyLogos[i % 5],
+  logoUrl: dummyLogos[i % dummyLogos.length],
   title: `私の投稿タイトル ${i + 1}`,
   body: `これは私の投稿の本文です。最大4行まで表示されるように設定されています。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。この文章はダミーです。`,
   mainImageUrl: `https://picsum.photos/seed/${i + 200}/500/281`,

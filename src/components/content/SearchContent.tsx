@@ -14,6 +14,7 @@ import IconContentTypeSpot from "@/components/icons/content-type-spot.svg";
 import IconContentTypeReview from "@/components/icons/content-type-review.svg";
 import IconContentTypeNews from "@/components/icons/content-type-news.svg";
 import IconContentTypeArticle from "@/components/icons/content-type-article.svg";
+import { dummyLogos } from "@/lib/dummyData";
 import "swiper/css";
 
 const MapView = dynamic(() => import("@/components/shared/MapView"), {
@@ -24,11 +25,6 @@ const MapView = dynamic(() => import("@/components/shared/MapView"), {
 // ダミーデータ (FavoritesContent.tsxから流用)
 const contentTypes: ContentType[] = ["spot", "article", "review", "news"];
 const dummyAuthors = ["Taro", "Jiro", "Saburo", "Shiro"];
-const dummyLogos = [
-  "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
-  "https://ueno.kokosil.net/static/data/sites/00001c00000000000002000000310000/kokosil_site_api/images/logo_ja.png",
-  "https://akihabara.kokosil.net/static/data/sites/00001c00000000000002000000340000/kokosil_site_api/images/logo_ja.png",
-];
 const searchResults: KokosilContentData[] = Array.from(
   { length: 20 },
   (_, i) => {
@@ -36,7 +32,7 @@ const searchResults: KokosilContentData[] = Array.from(
     const item: KokosilContentData = {
       id: i + 1,
       contentType: contentType,
-      logoUrl: dummyLogos[i % 3],
+      logoUrl: dummyLogos[i % dummyLogos.length],
       mainImageUrl: `https://picsum.photos/seed/${i + 100}/128/128`,
       isNew: i % 6 === 0,
       title: `検索結果 ${i + 1}: 「${contentType}」のタイトル`,

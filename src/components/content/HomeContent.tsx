@@ -6,6 +6,7 @@ import "swiper/css";
 import KokosilSiteItem, {
   KokosilSiteData,
 } from "@/components/shared/KokosilSiteItem";
+import { dummyLogos } from "@/lib/dummyData";
 
 // GalleryView用のダミーデータ
 const galleryItems: KokosilSiteData[] = Array.from({ length: 10 }, (_, i) => ({
@@ -13,8 +14,7 @@ const galleryItems: KokosilSiteData[] = Array.from({ length: 10 }, (_, i) => ({
   name: `ココシル銀座 ${i + 1}`,
   description: `国際的なブランドショップから老舗までが軒を連ねる、洗練された大人の街。伝統と革新が共存する魅力的なエリアです。`,
   siteImageUrl: `https://picsum.photos/seed/${i + 300}/800/600`,
-  logoUrl:
-    "https://ginza.kokosil.net/static/data/sites/00001c00000000000002000000220000/kokosil_site_api/images/logo_ja.png",
+  logoUrl: dummyLogos[i % dummyLogos.length],
 }));
 
 export default function HomeContent() {
