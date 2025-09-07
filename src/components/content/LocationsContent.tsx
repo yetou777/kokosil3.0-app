@@ -18,7 +18,7 @@ const MapView = dynamic(() => import("@/components/shared/MapView"), {
 
 // ダミーデータ
 const dummySiteItems: KokosilSiteData[] = Array.from(
-  { length: 10 },
+  { length: 20 },
   (_, i) => ({
     id: i + 1,
     name: `各地のココシル ${i + 1}`,
@@ -94,23 +94,25 @@ export default function LocationsContent() {
           direction="left"
           topPosition="top-16"
         >
-          <div className="my-4 space-y-6">
-            <CustomRadio
-              name="sortOption"
-              value="recentlyViewed"
-              checked={sortOption === "recentlyViewed"}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              {t("locations.recentlyViewed")}
-            </CustomRadio>
-            <CustomRadio
-              name="sortOption"
-              value="nearby"
-              checked={sortOption === "nearby"}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              {t("locations.nearby")}
-            </CustomRadio>
+          <div className="flex justify-center">
+            <div className="my-4 space-y-6 max-w-xs">
+              <CustomRadio
+                name="sortOption"
+                value="recentlyViewed"
+                checked={sortOption === "recentlyViewed"}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                {t("locations.recentlyViewed")}
+              </CustomRadio>
+              <CustomRadio
+                name="sortOption"
+                value="nearby"
+                checked={sortOption === "nearby"}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                {t("locations.nearby")}
+              </CustomRadio>
+            </div>
           </div>
         </SlideInPanel>
       )}

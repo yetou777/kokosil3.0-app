@@ -49,7 +49,7 @@ export default function SlideInPanel({
         </div>
 
         {/* Dialog Content */}
-        <div className="px-20 py-4">{children}</div>
+        <div className="p-4">{children}</div>
       </div>
     </div>
   );

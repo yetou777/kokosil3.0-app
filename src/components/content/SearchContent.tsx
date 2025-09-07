@@ -152,7 +152,7 @@ export default function SearchContent() {
         onClose={() => setIsFilterOpen(false)}
         title={t("search.filterTitle")}
       >
-        <div className="grid grid-cols-4 gap-4 text-center">
+        <div className="grid grid-cols-4 gap-4 text-center px-16">
           {filterCategories.map(({ type, icon: Icon }) => (
             <button
               key={type}
