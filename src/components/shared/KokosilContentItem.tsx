@@ -26,7 +26,10 @@ export type KokosilContentData = {
 };
 
 // コンテンツ種別ごとのアイコンをマッピング
-const contentTypeIcons: Record<ContentType, React.ComponentType<any>> = {
+const contentTypeIcons: Record<
+  ContentType,
+  React.ComponentType<{ className?: string }>
+> = {
   spot: IconContentTypeSpot,
   article: IconContentTypeArticle,
   review: IconContentTypeReview,

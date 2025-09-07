@@ -12,6 +12,7 @@ type MapViewProps = {
   items: (KokosilContentData | KokosilSiteData)[];
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function MapView({ items }: MapViewProps) {
   // 仮の緯度経度。本来はitemsから取得します。
   const position: [number, number] = [35.681236, 139.767125]; // 東京駅
