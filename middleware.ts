@@ -14,11 +14,11 @@ export const config = {
 };
 
 export function middleware(req: NextRequest) {
-  // For debugging: Unconditionally ask for authentication
-  return new NextResponse("Auth Required.", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Secure Area"',
-    },
-  });
+  // Let the original request proceed
+  const response = NextResponse.next();
+
+  // Add a custom header to the response for debugging
+  response.headers.set("x-middleware-ran", "true");
+
+  return response;
 }
