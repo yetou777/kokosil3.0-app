@@ -14,11 +14,24 @@ export const config = {
 };
 
 export function middleware(req: NextRequest) {
-  // Let the original request proceed
-  const response = NextResponse.next();
+  const basicAuth = req.headers.get("authorization");
 
-  // Add a custom header to the response for debugging
-  response.headers.set("x-middleware-ran", "true");
+  if (basicAuth) {
+    const authValue = basicAuth.split(" ")[1];
+    const [user, pwd] = Buffer.from(authValue, "base64").toString().split(":");
 
-  return response;
+    const validUser = process.env.BASIC_AUTH_USER;
+    const validPass = process.env.BASIC_AUTH_PASS;
+
+    if (user === validUser && pwd === validPass) {
+      return NextResponse.next();
+    }
+  }
+
+  return new NextResponse("Auth Required.", {
+    status: 401,
+    headers: {
+      "WWW-Authenticate": 'Basic realm="Secure Area"',
+    },
+  });
 }
